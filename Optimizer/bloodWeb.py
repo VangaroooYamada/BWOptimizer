@@ -64,6 +64,11 @@ class BloodWeb():
 
 # *********************************************************
 
+    def entity(self):
+        # unimplemented
+        # change 'unpassed' nodes' status 'entity'
+        return
+
     def exists_unpassed(self):
         return 'unpassed' in nx.get_node_attributes(self.bw, 'status').values()
 
