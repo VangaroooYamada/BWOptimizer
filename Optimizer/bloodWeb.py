@@ -18,18 +18,20 @@ class BloodWeb():
         nx.set_node_attributes(self.bw, name='status', values='unpassed')
         self.bw.nodes[0]['status'] = 'passed'
         self.entity_trigger = False
+        self.expend_bp = 0
         self.route = []
 
 
     def test_func(self):
         for i in self.bw.nodes:
-            if self.get_attr(i, 'status') == 'unpassed':
-                if type(self.get_attr(i, 'node_type')) == Perk:
+            if self.bw.nodes[i]['status'] == 'unpassed':
+                if type(self.bw.nodes[i]['node_type']) == Perk:
                     root_list = nx.dijkstra_path(self.bw, 0, i)
-                    print(root_list)
+                    print(root_list) 
                     for n in root_list:
-                        print(self.bw.nodes[n]['node_type'])
                         self.bw.nodes[n]['status'] == 'passed'
+                        print('a')
+                    self.entity_trigger = True
         return 
         
 # *********************************************************
@@ -46,22 +48,20 @@ class BloodWeb():
                 # self.entity()
                 print('Entity Moves')
                 for i in self.bw.nodes[::-1]:
-                    if self.get_attr(i, 'status') == 'unpassed':
+                    if self.bw.nodes[i]['status'] == 'unpassed':
                         self.bw.nodes[i]['status'] == 'entity'
 
             else:
-                for i in self.bw.nodes():
-                    if self.get_attr(i, 'status') == 'unpassed':
-                        if type(self.get_attr(i, 'node_type')) == Perk:
+                for i in self.bw.nodes:
+                    if self.bw.nodes[i]['status'] == 'unpassed':
+                        if type(self.bw.nodes[i]['node_type']) == Perk:
                             root_list = nx.dijkstra_path(self.bw, 0, i)
+                            print(root_list)
                             for n in root_list:
                                 self.bw.nodes[n]['status'] == 'passed'
                             self.entity_trigger = True
-                            print(root_list)
                             break
                 continue                        
-
-
 
     def get_optimal(self):
         # unimplemented
@@ -72,12 +72,6 @@ class BloodWeb():
         return
 
 # *********************************************************
-
-    def get_attr(self, node, attr):
-        for i in self.bw.nodes(data=True):
-            if i[0] == node:
-                return i[1][attr]
-
 
     def exists_unpassed(self):
         return 'unpassed' in nx.get_node_attributes(self.bw, 'status').values()
@@ -91,9 +85,10 @@ class BloodWeb():
 
 if __name__ == '__main__':
     test = BloodWeb()
-    test.show_info()
+    # test.show_info()
     print('*' * 20)
     test.test_func()
     # test.get_shortest()
     print('*' * 20)
-    test.show_info()
+    # test.show_info()
+    print(test.bw.nodes[25]['status'])
