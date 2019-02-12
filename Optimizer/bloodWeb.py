@@ -23,15 +23,6 @@ class BloodWeb():
 
 
     def test_func(self):
-        for i in self.bw.nodes:
-            if self.bw.nodes[i]['status'] == 'unpassed':
-                if type(self.bw.nodes[i]['node_type']) == Perk:
-                    root_list = nx.dijkstra_path(self.bw, 0, i)
-                    print(root_list) 
-                    for n in root_list:
-                        self.bw.nodes[n]['status'] == 'passed'
-                        print('a')
-                    self.entity_trigger = True
         return 
         
 # *********************************************************
@@ -90,5 +81,4 @@ if __name__ == '__main__':
     test.test_func()
     # test.get_shortest()
     print('*' * 20)
-    # test.show_info()
-    print(test.bw.nodes[25]['status'])
+    test.show_info()
