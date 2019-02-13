@@ -1,4 +1,4 @@
-from bloodWeb import BloodWeb
+from bloodweb import BloodWeb
 
 if __name__ == '__main__':
     test = BloodWeb()
