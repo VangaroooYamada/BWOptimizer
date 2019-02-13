@@ -1,5 +1,6 @@
 import networkx as nx
 import yaml
+
 from addon import Addon
 from item import Item
 from offering import Offering
