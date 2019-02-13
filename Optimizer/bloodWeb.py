@@ -30,7 +30,7 @@ class BloodWeb():
     def get_shortest(self):
         # unimplemented
         self.entity_trigger = False
-        root_list = []
+        route_list = []
                     
         while self.exists_unpassed():
             
@@ -40,14 +40,15 @@ class BloodWeb():
                 for i in self.bw.nodes[::-1]:
                     if self.bw.nodes[i]['status'] == 'unpassed':
                         self.bw.nodes[i]['status'] == 'entity'
+                        break
 
             else:
                 for i in self.bw.nodes:
                     if self.bw.nodes[i]['status'] == 'unpassed':
                         if type(self.bw.nodes[i]['node_type']) == Perk:
-                            root_list = nx.dijkstra_path(self.bw, 0, i)
-                            print(root_list)
-                            for n in root_list:
+                            route_list = nx.dijkstra_path(self.bw, 0, i)
+                            print(route_list)
+                            for n in route_list:
                                 self.bw.nodes[n]['status'] = 'passed'
                             self.entity_trigger = True
                             break
