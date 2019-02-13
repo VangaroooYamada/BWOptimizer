@@ -64,7 +64,7 @@ class BloodWeb():
     def entity(self):
         # unimplemented
         # change 'unpassed' nodes' status 'entity'
-        for i in self.bw.nodes[::-1]:
+        for i in reversed(list(self.bw.nodes)):
             if self.bw.nodes[i]['status'] == 'unpassed':
                 self.bw.nodes[i]['status'] = 'entity'
                 break
