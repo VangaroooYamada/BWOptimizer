@@ -44,12 +44,27 @@ class BloodWeb():
                     if self.bw.nodes[i]['status'] == 'unpassed':
                         if type(self.bw.nodes[i]['node_type']) == Perk:
                             route_list = nx.dijkstra_path(self.bw, 0, i)
-                            print(route_list)
+                            self.route.extend(route_list)
                             for n in route_list:
                                 self.bw.nodes[n]['status'] = 'passed'
                             self.entity_trigger = True
                             break
-                continue                        
+                continue
+
+            flag = False
+            for i in self.bw.nodes:
+                if flag:
+                    break
+                if self.bw.nodes[i]['status'] == 'passed':
+                    for j in list(nx.all_neighbors(self.bw, i)):
+                        if self.bw.nodes[j]['status'] == 'unpassed':
+                            self.bw.nodes[j]['status'] = 'passed'
+                            self.route.append(j)
+                            flag = True
+                            break                   
+
+        print(self.route)
+        return
 
     def get_optimal(self):
         # unimplemented
@@ -86,4 +101,4 @@ if __name__ == '__main__':
     # test.test_func()
     test.get_shortest()
     print('*' * 20)
-    test.show_info()
+    # test.show_info()
