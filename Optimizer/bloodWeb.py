@@ -66,7 +66,7 @@ class BloodWeb():
         # change 'unpassed' nodes' status 'entity'
         for i in self.bw.nodes[::-1]:
             if self.bw.nodes[i]['status'] == 'unpassed':
-                self.bw.nodes[i]['status'] == 'entity'
+                self.bw.nodes[i]['status'] = 'entity'
                 break
 
     def exists_unpassed(self):
