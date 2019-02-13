@@ -37,7 +37,6 @@ class BloodWeb():
             if self.entity_trigger:
                 # do entity's Erosion method
                 # self.entity()
-                print('Entity Moves')
                 for i in self.bw.nodes[::-1]:
                     if self.bw.nodes[i]['status'] == 'unpassed':
                         self.bw.nodes[i]['status'] == 'entity'
@@ -49,7 +48,7 @@ class BloodWeb():
                             root_list = nx.dijkstra_path(self.bw, 0, i)
                             print(root_list)
                             for n in root_list:
-                                self.bw.nodes[n]['status'] == 'passed'
+                                self.bw.nodes[n]['status'] = 'passed'
                             self.entity_trigger = True
                             break
                 continue                        
