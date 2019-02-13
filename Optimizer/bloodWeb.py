@@ -37,11 +37,7 @@ class BloodWeb():
             
             if self.entity_trigger:
                 # do entity's Erosion method
-                # self.entity()
-                for i in self.bw.nodes[::-1]:
-                    if self.bw.nodes[i]['status'] == 'unpassed':
-                        self.bw.nodes[i]['status'] == 'entity'
-                        break
+                self.entity()
 
             else:
                 for i in self.bw.nodes:
@@ -68,7 +64,10 @@ class BloodWeb():
     def entity(self):
         # unimplemented
         # change 'unpassed' nodes' status 'entity'
-        return
+        for i in self.bw.nodes[::-1]:
+            if self.bw.nodes[i]['status'] == 'unpassed':
+                self.bw.nodes[i]['status'] == 'entity'
+                break
 
     def exists_unpassed(self):
         return 'unpassed' in nx.get_node_attributes(self.bw, 'status').values()
