@@ -12,10 +12,10 @@ class BloodWeb():
         self.bw = nx.read_edgelist('testBW.txt', nodetype=int)
         with open('testAttr.yml', 'r') as test:
             tmp = test.read()
-        self.attr_dict = yaml.safe_load(tmp)
-        for node, attr in self.attr_dict.items():
-            self.attr_dict[node] = eval(attr)
-        nx.set_node_attributes(self.bw, name='node_type', values=self.attr_dict)
+        self.attr_dic = yaml.safe_load(tmp)
+        for node, attr in self.attr_dic.items():
+            self.attr_dic[node] = eval(attr)
+        nx.set_node_attributes(self.bw, name='node_type', values=self.attr_dic)
         nx.set_node_attributes(self.bw, name='status', values='unpassed')
         self.bw.nodes[0]['status'] = 'passed'
         self.entity_trigger = False
